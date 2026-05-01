@@ -11,7 +11,7 @@ const allComponents = [
     price: "52 740 ₽",
     warranty: "1 год",
     image: "https://cdn.poehali.dev/projects/1c130b2a-705a-4ccb-9adf-188d4984560c/bucket/992d81ec-f481-4090-96eb-4d81884a03a3.jpg",
-    specs: ["16 ядер / 32 потока", "3D V-Cache", "AM5 сокет", "до 5.7 GHz"],
+    specs: ["16 ядер / 32 потока", "AM5 сокет", "до 5.7 GHz"],
     desc: "Самый мощный рабоче-игровой процессор в мире. Справляется с рендером, стримингом и любой рабочей нагрузкой одновременно.",
   },
   {
@@ -28,7 +28,7 @@ const allComponents = [
     name: "KFA2 RTX 5080 ROCK(X) OC",
     role: "Видеокарта",
     tag: "GPU",
-    price: "144 999 ₽",
+    price: "134 999 ₽",
     warranty: "3 года DNS",
     image: "https://cdn.poehali.dev/projects/1c130b2a-705a-4ccb-9adf-188d4984560c/bucket/55908787-a7f4-4c5d-8ecc-c7cad3d5ec91.jpg",
     specs: ["RTX 5080", "3 вентилятора", "350W TDP", "66°C под нагрузкой", "RGB подсветка"],
@@ -52,14 +52,14 @@ const allComponents = [
     warranty: "5 лет WB",
     image: "https://cdn.poehali.dev/files/5789b97a-e4cd-4f18-baab-ce8eddbc6e67.png",
     specs: ["PCIe Gen5", "NVMe M.2", "2TB + 4TB", "до 14 000 MB/s", "SM2508 контроллер"],
-    desc: "Начинка, как у топового Adata Mars 980: контроллер Silicon Motion SM2508 в связке с чипами памяти Micron B58R TLC 232-слойными. 1/2/4 ГБ DRAM-буфера (в зависимости от объёма). Скорости на чтение и запись у 1 ТБ — 14000/8500 МБ/с, а у 2/4 ТБ — 14000/10000 МБ/с. Гарантия 5 лет от WB.",
+    desc: "Начинка, как у топового Adata Mars 980: контроллер Silicon Motion SM2508 в связке с чипами памяти Micron B58R TLC 232-слойными. 1/2/4 ГБ DRAM-буфера (в зависимости от объёма). Скорости на чтение и запись у 1 ТБ — 14000/8500 МБ/с, а у 2/4 ТБ — 14000/10000 МБ/с.",
   },
   {
     name: "Thermalright Wonder Vision 360",
     role: "Система жидкостного охлаждения",
     tag: "AIO",
     price: "15 239 ₽",
-    warranty: "6 лет",
+    warranty: "6 лет ОнлайнТрейд",
     image: "https://cdn.poehali.dev/projects/1c130b2a-705a-4ccb-9adf-188d4984560c/bucket/db804bfe-b3bd-454e-bf00-9b5640b6d8a9.jpg",
     specs: ["AMOLED 2K дисплей", "6.67\" 60 Гц", "TL-UB36 2150 RPM", "27 dBA", "S-FDB V2"],
     desc: "Главный фокус — AMOLED-панель 2K (2400×1080, 6.67\") прямо на помпе. Производительность выше конкурентов, цена ниже. На Intel 243 Вт — всего 79.98°C. Ryzen 9 9950X — 91°C (280W). Вентиляторы TL-UB36: 69 CFM, 27 dBA.",
@@ -151,7 +151,7 @@ const ComponentSlide = ({ item, isActive }: { item: typeof allComponents[0]; isA
 const summaryItems = [
   { tag: "CPU", name: "AMD Ryzen 9 9950X3D", price: "52 740 ₽" },
   { tag: "MB", name: "ASRock B850 Phantom Gaming Riptide WiFi", price: "17 499 ₽" },
-  { tag: "GPU", name: "KFA2 RTX 5080 ROCK(X) OC", price: "144 999 ₽" },
+  { tag: "GPU", name: "KFA2 RTX 5080 ROCK(X) OC", price: "134 999 ₽" },
   { tag: "RAM", name: "Acer Predator Pallas II 64 GB DDR5", price: "59 990 ₽" },
   { tag: "SSD", name: "Fanxiang S910 MAX 2TB + 4TB", price: "54 358 ₽" },
   { tag: "AIO", name: "Thermalright Wonder Vision 360", price: "15 239 ₽" },
@@ -187,7 +187,7 @@ const FinalBuild = ({ isActive }: { isActive: boolean }) => (
           ))}
           <div className="flex justify-between items-center pt-3">
             <span className="text-white font-bold text-base">Итого</span>
-            <span className="text-red-400 font-bold text-xl">393 470 ₽</span>
+            <span className="text-red-400 font-bold text-xl">383 470 ₽</span>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
