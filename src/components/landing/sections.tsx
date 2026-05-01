@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 // ─── данные компонентов в порядке сборки ───────────────────────────────────
 
@@ -9,10 +9,10 @@ const allComponents = [
     role: "Процессор",
     tag: "CPU",
     price: "52 740 ₽",
-    warranty: "3 года",
+    warranty: "1 год",
     image: "https://cdn.poehali.dev/projects/1c130b2a-705a-4ccb-9adf-188d4984560c/bucket/992d81ec-f481-4090-96eb-4d81884a03a3.jpg",
-    specs: ["16 ядер / 32 потока", "3D V-Cache", "AM5 сокет", "до 5.7 GHz", "170W TDP"],
-    desc: "Самый мощный рабоче-игровой процессор в мире. 3D V-Cache делает его непобедимым в играх, а 16 ядер справляются с рендером, стримингом и любой рабочей нагрузкой одновременно.",
+    specs: ["16 ядер / 32 потока", "3D V-Cache", "AM5 сокет", "до 5.7 GHz"],
+    desc: "Самый мощный рабоче-игровой процессор в мире. Справляется с рендером, стримингом и любой рабочей нагрузкой одновременно.",
   },
   {
     name: "ASRock B850 Phantom Gaming Riptide WiFi",
@@ -21,8 +21,8 @@ const allComponents = [
     price: "17 499 ₽",
     warranty: "3 года",
     image: "https://cdn.poehali.dev/files/1598c99f-9528-4063-863d-d53a1e2eeedc.png",
-    specs: ["AM5 сокет", "DDR5", "PCIe 5.0", "WiFi 6E", "2.5G LAN"],
-    desc: "Надёжная основа для топовой сборки. Поддержка DDR5 и PCIe 5.0, встроенный WiFi 6E и отличные возможности для разгона. Лучший выбор на платформе AM5 за свои деньги.",
+    specs: ["AM5 сокет", "4 слота M.2", "PCIe 5.0", "WiFi 6E", "2.5G LAN", "8 слоёв PCB"],
+    desc: "Подсистема питания: 2x7+2+1 с Vishay SiC661 (80A) для VCore, SoC и Misc питания, и возможно SiC659, в зависимости от региона. 8 слоёв и разъёмы для подключения всего, от 5x16 до кучи М.2 накопителей: 1*5x4; 2*4x4; 1*3x4 (M2_1 (5x4) и M2_2 (4x4) берутся с CPU), да ещё с разъёмами для питания подсветки. А на задней панели: 4 x USB 3.2 Gen1 Type-A, 1 x USB 3.2 Gen2 Type-C, 2 x USB 2.0, 4 x USB 3.2 Gen1, 4 x USB 2.0. Потянет что угодно и когда угодно. Лучший выбор на платформе AM5 за свои деньги.",
   },
   {
     name: "KFA2 RTX 5080 ROCK(X) OC",
@@ -39,20 +39,20 @@ const allComponents = [
     role: "Оперативная память",
     tag: "RAM",
     price: "59 990 ₽",
-    warranty: "5 лет",
+    warranty: "10 лет DNS (Авито)",
     image: "https://cdn.poehali.dev/files/792a0399-4de1-40f8-8557-105def2de9a8.png",
-    specs: ["64 GB", "DDR5", "6000 MHz", "CL30", "XMP 3.0"],
-    desc: "64 гигабайта высокоскоростной памяти DDR5 — без компромиссов для любых задач. Чёрный стелс-дизайн с элегантной белой линией идеально впишется в сборку.",
+    specs: ["64 GB", "DDR5", "6000 MHz", "CL30"],
+    desc: "64 гигабайта высокоскоростной памяти DDR5 — без компромиссов для любых задач. Берём с Авито, гарантия 10 лет от DNS. Чёрный стелс-дизайн с элегантной белой линией идеально впишется в любую сборку.",
   },
   {
     name: "Fanxiang S910 MAX 2TB + 4TB",
     role: "SSD накопитель",
     tag: "SSD",
     price: "54 358 ₽",
-    warranty: "5 лет",
+    warranty: "5 лет WB",
     image: "https://cdn.poehali.dev/files/5789b97a-e4cd-4f18-baab-ce8eddbc6e67.png",
-    specs: ["PCIe Gen5", "NVMe M.2", "2TB + 4TB", "до 14 000 MB/s", "DRAM кэш"],
-    desc: "Два накопителя PCIe Gen5 — 2TB для системы и 4TB для хранения. Скорость до 14 000 MB/s делает загрузку игр и рабочих файлов мгновенной.",
+    specs: ["PCIe Gen5", "NVMe M.2", "2TB + 4TB", "до 14 000 MB/s", "SM2508 контроллер"],
+    desc: "Начинка, как у топового Adata Mars 980: контроллер Silicon Motion SM2508 в связке с чипами памяти Micron B58R TLC 232-слойными. 1/2/4 ГБ DRAM-буфера (в зависимости от объёма). Скорости на чтение и запись у 1 ТБ — 14000/8500 МБ/с, а у 2/4 ТБ — 14000/10000 МБ/с. Гарантия 5 лет от WB.",
   },
   {
     name: "Thermalright Wonder Vision 360",
@@ -62,7 +62,7 @@ const allComponents = [
     warranty: "6 лет",
     image: "https://cdn.poehali.dev/projects/1c130b2a-705a-4ccb-9adf-188d4984560c/bucket/db804bfe-b3bd-454e-bf00-9b5640b6d8a9.jpg",
     specs: ["AMOLED 2K дисплей", "6.67\" 60 Гц", "TL-UB36 2150 RPM", "27 dBA", "S-FDB V2"],
-    desc: "Главный фокус — AMOLED-панель 2K (2400×1080, 6.67\") прямо на помпе. Производительность выше конкурентов, цена ниже. На Intel 243 Вт — всего 79.98°C.",
+    desc: "Главный фокус — AMOLED-панель 2K (2400×1080, 6.67\") прямо на помпе. Производительность выше конкурентов, цена ниже. На Intel 243 Вт — всего 79.98°C. Ryzen 9 9950X — 91°C (280W). Вентиляторы TL-UB36: 69 CFM, 27 dBA.",
   },
   {
     name: "Phanteks D30 (6 шт.)",
@@ -79,15 +79,15 @@ const allComponents = [
     role: "Блок питания",
     tag: "PSU",
     price: "11 763 ₽",
-    warranty: "10 лет",
+    warranty: "10 лет ОнлайнТрейда",
     image: "https://cdn.poehali.dev/projects/1c130b2a-705a-4ccb-9adf-188d4984560c/bucket/77f585df-bd9b-4209-af89-c915ef613de7.jpg",
     specs: ["80+ Platinum", "1000W", "ATX 3.1", "Full-Bridge LLC", "Nippon Chemi-Con"],
-    desc: "Добрый друг, который всегда поддержит тебя в начинаниях. Full-Bridge LLC с синхронным выпрямлением, конденсаторы Nippon Chemi-Con. Тихий, мощный, надёжный.",
+    desc: "Добрый друг, который всегда поддержит тебя в начинаниях. Full-Bridge LLC с синхронным выпрямлением, конденсаторы Nippon Chemi-Con. Тихий, мощный, надёжный. Гарантия 10 лет от ОнлайнТрейда.",
   },
 ]
 
 const SpecBadge = ({ tag }: { tag: string }) => (
-  <span className="inline-block px-2 py-0.5 rounded text-xs font-mono font-bold tracking-widest border border-orange-500/60 text-orange-400 bg-orange-500/10">
+  <span className="inline-block px-2 py-0.5 rounded text-xs font-mono font-bold tracking-widest border border-red-500/60 text-red-400 bg-red-500/10">
     {tag}
   </span>
 )
@@ -102,7 +102,7 @@ const ComponentSlide = ({ item, isActive }: { item: typeof allComponents[0]; isA
       animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="absolute inset-0 bg-orange-500/5" />
+      <div className="absolute inset-0 bg-red-500/5" />
       <img
         src={item.image}
         alt={item.name}
@@ -139,7 +139,7 @@ const ComponentSlide = ({ item, isActive }: { item: typeof allComponents[0]; isA
         </div>
         <div className="text-right">
           <p className="text-neutral-500 text-xs">Цена</p>
-          <p className="text-orange-400 text-2xl font-bold">{item.price}</p>
+          <p className="text-red-400 text-2xl font-bold">{item.price}</p>
         </div>
       </div>
     </motion.div>
@@ -168,10 +168,10 @@ const FinalBuild = ({ isActive }: { isActive: boolean }) => (
       animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="border border-orange-500/30 rounded-2xl p-5 md:p-6 bg-orange-500/5">
+      <div className="border border-red-500/30 rounded-2xl p-5 md:p-6 bg-red-500/5">
         <div className="flex items-center gap-3 mb-4">
-          <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-          <span className="text-orange-400 text-sm font-mono tracking-widest uppercase">Готово к заказу</span>
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-red-400 text-sm font-mono tracking-widest uppercase">Готово к заказу</span>
         </div>
         <h3 className="text-white text-xl font-bold mb-1">Ultimate Build 2025</h3>
         <p className="text-neutral-400 text-xs mb-4">Ryzen 9 9950X3D · RTX 5080 · 64 GB DDR5 · 6 TB NVMe PCIe 5.0</p>
@@ -187,11 +187,11 @@ const FinalBuild = ({ isActive }: { isActive: boolean }) => (
           ))}
           <div className="flex justify-between items-center pt-3">
             <span className="text-white font-bold text-base">Итого</span>
-            <span className="text-orange-400 font-bold text-xl">393 470 ₽</span>
+            <span className="text-red-400 font-bold text-xl">393 470 ₽</span>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
-          <button className="flex-1 bg-orange-500 hover:bg-orange-600 text-black font-bold py-3 px-6 rounded-xl transition-colors text-sm">
+          <button className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-colors text-sm">
             Оформить заказ
           </button>
           <button className="flex-1 border border-white/20 hover:border-white/40 text-white font-medium py-3 px-6 rounded-xl transition-colors text-sm">
@@ -207,7 +207,7 @@ const FinalBuild = ({ isActive }: { isActive: boolean }) => (
       animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
       transition={{ duration: 0.5, delay: 0.15 }}
     >
-      <div className="absolute inset-0 bg-orange-500/5" />
+      <div className="absolute inset-0 bg-red-500/5" />
       <img
         src="https://cdn.poehali.dev/files/58003920-e9bb-43bb-8097-47a0acd23ee4.jpg"
         alt="Corsair AIR 5400"
@@ -222,18 +222,18 @@ const FinalBuild = ({ isActive }: { isActive: boolean }) => (
 const HeroContent = () => (
   <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full px-8 md:px-16 lg:px-24 py-16 gap-8">
     <div className="flex flex-col justify-center max-w-xl shrink-0">
-      <Badge variant="outline" className="text-orange-400 border-orange-500/60 bg-orange-500/10 mb-6 self-start">
-        Ultimate Gaming & Work Station
+      <Badge variant="outline" className="text-red-400 border-red-500/60 bg-red-500/10 mb-6 self-start">
+        Ultimate Gaming & Video Station
       </Badge>
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-white mb-4">
-        Мощь без<br />компромиссов.
+        Мощь и красота<br />без компромиссов.
       </h1>
       <p className="text-lg text-neutral-400 mb-10 max-w-md">
-        Ryzen 9 9950X3D + RTX 5080 — самая производительная рабоче-игровая станция из доступных на рынке.
+        Ryzen 9 9950X3D + RTX 5080 в вашем индивидуально выбранном дизайне — идеальный баланс цены и мощности, где мы укладываемся в 400 тыс. рублей.
       </p>
       <div className="flex flex-col sm:flex-row gap-4">
         <button
-          className="bg-orange-500 hover:bg-orange-600 text-black font-bold py-3 px-8 rounded-xl transition-colors text-base"
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-xl transition-colors text-base"
           onClick={() => { document.getElementById('slide-1')?.scrollIntoView({ behavior: 'smooth' }) }}
         >
           Изучить сборку
@@ -247,7 +247,7 @@ const HeroContent = () => (
       </div>
     </div>
     <div className="relative flex-1 flex items-center justify-center min-h-0 lg:max-w-lg xl:max-w-xl w-full">
-      <div className="absolute inset-0 bg-orange-500/10 blur-3xl rounded-full" />
+      <div className="absolute inset-0 bg-red-500/10 blur-3xl rounded-full" />
       <img
         src="https://cdn.poehali.dev/files/58003920-e9bb-43bb-8097-47a0acd23ee4.jpg"
         alt="Ultimate PC Build"
@@ -265,7 +265,7 @@ export const sections = [
     id: 'hero',
     title: '',
     slideIndex: 0,
-    customContent: (isActive: boolean) => <HeroContent />,
+    customContent: (_isActive: boolean) => <HeroContent />,
   },
   ...allComponents.map((comp, i) => ({
     id: `slide-${i + 1}`,

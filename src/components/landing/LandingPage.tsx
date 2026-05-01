@@ -51,7 +51,7 @@ export default function LandingPage() {
             title={section.title || 'Главная'}
             className={`rounded-full transition-all duration-300 ${
               index === activeSection
-                ? 'bg-orange-500 w-2 h-5 scale-110'
+                ? 'bg-red-500 w-2 h-5 scale-110'
                 : 'bg-white/20 hover:bg-white/40 w-2 h-2'
             }`}
             onClick={() => handleNavClick(index)}
@@ -61,13 +61,13 @@ export default function LandingPage() {
 
       {/* прогресс-бар сверху */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-0.5 bg-orange-500 origin-left z-30"
+        className="fixed top-0 left-0 right-0 h-0.5 bg-red-500 origin-left z-30"
         style={{ scaleX }}
       />
 
       {/* номер слайда снизу слева */}
       <div className="fixed bottom-6 left-8 z-30 flex items-center gap-3">
-        <span className="text-orange-400 font-mono font-bold text-sm tabular-nums">
+        <span className="text-red-400 font-mono font-bold text-sm tabular-nums">
           {String(activeSection + 1).padStart(2, '0')}
         </span>
         <div className="w-12 h-px bg-white/20" />

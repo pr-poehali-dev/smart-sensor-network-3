@@ -9,13 +9,13 @@ interface LayoutProps {
 export default function Layout({ children, activeSection, totalSections }: LayoutProps) {
   return (
     <div className="h-screen overflow-hidden relative" style={{
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #0d0d1a 30%, #0a0a0a 60%, #120800 100%)'
+      background: 'linear-gradient(135deg, #0a0000 0%, #13000a 30%, #0d0012 65%, #060010 100%)'
     }}>
-      {/* градиентный акцент */}
+      {/* радиальные цветовые акценты */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 80% 20%, rgba(249,115,22,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(59,130,246,0.06) 0%, transparent 60%)'
+          background: 'radial-gradient(ellipse at 75% 15%, rgba(220,38,38,0.13) 0%, transparent 55%), radial-gradient(ellipse at 25% 85%, rgba(109,40,217,0.10) 0%, transparent 55%)'
         }}
       />
 
@@ -28,7 +28,7 @@ export default function Layout({ children, activeSection, totalSections }: Layou
           className="font-black text-white transition-all duration-700"
           style={{
             fontSize: 'clamp(200px, 35vw, 500px)',
-            opacity: 0.025,
+            opacity: 0.03,
             lineHeight: 1,
             letterSpacing: '-0.05em',
             fontVariantNumeric: 'tabular-nums',
@@ -37,16 +37,6 @@ export default function Layout({ children, activeSection, totalSections }: Layou
           {String(activeSection + 1).padStart(2, '0')}
         </span>
       </div>
-
-      {/* тонкая сетка */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          zIndex: 2,
-        }}
-      />
 
       <div className="relative h-full" style={{ zIndex: 10 }}>
         {children}
