@@ -92,59 +92,115 @@ const SpecBadge = ({ tag }: { tag: string }) => (
   </span>
 )
 
-// ─── слайд одного компонента ────────────────────────────────────────────────
+// ─── общий блок с инфой о компоненте ────────────────────────────────────────
 
-const ComponentSlide = ({ item, isActive }: { item: typeof allComponents[0]; isActive: boolean }) => (
-  <div className="flex flex-col lg:flex-row gap-8 h-full items-center">
-    <motion.div
-      className="relative lg:w-1/2 flex items-center justify-center rounded-2xl overflow-hidden bg-white/5 border border-white/10 min-h-[220px] lg:h-[65vh]"
-      initial={{ opacity: 0, x: -40 }}
-      animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="absolute inset-0 bg-red-500/5" />
-      <img
-        src={item.image}
-        alt={item.name}
-        className="relative z-10 w-full h-full object-cover"
-      />
-    </motion.div>
-
-    <motion.div
-      className="lg:w-1/2 flex flex-col justify-center gap-4"
-      initial={{ opacity: 0, x: 40 }}
-      animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-    >
+const ComponentInfo = ({ item, isActive, fromX = 40 }: { item: typeof allComponents[0]; isActive: boolean; fromX?: number }) => (
+  <motion.div
+    className="flex flex-col justify-center gap-3 h-full"
+    initial={{ opacity: 0, x: fromX }}
+    animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: fromX }}
+    transition={{ duration: 0.5, delay: 0.1 }}
+  >
+    <div>
+      <SpecBadge tag={item.tag} />
+      <p className="text-neutral-500 text-xs mt-1">{item.role}</p>
+      <h3 className="text-white text-2xl md:text-3xl font-bold mt-1 leading-tight">{item.name}</h3>
+    </div>
+    <p className="text-neutral-400 text-sm leading-relaxed">{item.desc}</p>
+    <div className="flex flex-wrap gap-2">
+      {item.specs.map(s => (
+        <span key={s} className="text-xs border border-white/10 rounded-lg px-3 py-1.5 text-neutral-300 bg-white/5">
+          {s}
+        </span>
+      ))}
+    </div>
+    <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
       <div>
-        <SpecBadge tag={item.tag} />
-        <p className="text-neutral-500 text-xs mt-1">{item.role}</p>
-        <h3 className="text-white text-2xl md:text-3xl font-bold mt-1 leading-tight">{item.name}</h3>
+        <p className="text-neutral-500 text-xs">Гарантия</p>
+        <p className="text-white text-sm font-medium">{item.warranty}</p>
       </div>
-
-      <p className="text-neutral-400 text-sm leading-relaxed">{item.desc}</p>
-
-      <div className="flex flex-wrap gap-2">
-        {item.specs.map(s => (
-          <span key={s} className="text-xs border border-white/10 rounded-lg px-3 py-1.5 text-neutral-300 bg-white/5">
-            {s}
-          </span>
-        ))}
+      <div className="text-right">
+        <p className="text-neutral-500 text-xs">Цена</p>
+        <p className="text-red-400 text-2xl font-bold">{item.price}</p>
       </div>
-
-      <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-        <div>
-          <p className="text-neutral-500 text-xs">Гарантия</p>
-          <p className="text-white text-sm font-medium">{item.warranty}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-neutral-500 text-xs">Цена</p>
-          <p className="text-red-400 text-2xl font-bold">{item.price}</p>
-        </div>
-      </div>
-    </motion.div>
-  </div>
+    </div>
+  </motion.div>
 )
+
+const ComponentPhoto = ({ item, isActive, fromX = -40, fromY = 0 }: { item: typeof allComponents[0]; isActive: boolean; fromX?: number; fromY?: number }) => (
+  <motion.div
+    className="relative flex items-center justify-center rounded-2xl overflow-hidden bg-white/5 border border-white/10"
+    style={{ minHeight: '180px' }}
+    initial={{ opacity: 0, x: fromX, y: fromY }}
+    animate={isActive ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: fromX, y: fromY }}
+    transition={{ duration: 0.5 }}
+  >
+    <div className="absolute inset-0 bg-red-500/5" />
+    <img src={item.image} alt={item.name} className="relative z-10 w-full h-full object-cover" />
+  </motion.div>
+)
+
+// ─── слайд одного компонента с чередующейся раскладкой ──────────────────────
+
+// раскладки: 0=фото слева, 1=фото справа, 2=фото сверху (широко), 3=фото снизу (широко)
+const LAYOUTS = ['photo-left', 'photo-right', 'photo-top', 'photo-bottom'] as const
+
+const ComponentSlide = ({ item, isActive, index }: { item: typeof allComponents[0]; isActive: boolean; index: number }) => {
+  const layout = LAYOUTS[index % LAYOUTS.length]
+
+  // горизонтальные раскладки
+  if (layout === 'photo-left') {
+    return (
+      <div className="flex flex-col lg:flex-row gap-6 h-full items-center">
+        <div className="lg:w-[45%] h-[40vh] lg:h-[65vh] w-full">
+          <ComponentPhoto item={item} isActive={isActive} fromX={-40} />
+        </div>
+        <div className="lg:w-[55%] h-full">
+          <ComponentInfo item={item} isActive={isActive} fromX={40} />
+        </div>
+      </div>
+    )
+  }
+
+  if (layout === 'photo-right') {
+    return (
+      <div className="flex flex-col lg:flex-row gap-6 h-full items-center">
+        <div className="lg:w-[55%] h-full order-2 lg:order-1">
+          <ComponentInfo item={item} isActive={isActive} fromX={-40} />
+        </div>
+        <div className="lg:w-[45%] h-[40vh] lg:h-[65vh] w-full order-1 lg:order-2">
+          <ComponentPhoto item={item} isActive={isActive} fromX={40} />
+        </div>
+      </div>
+    )
+  }
+
+  // вертикальные раскладки
+  if (layout === 'photo-top') {
+    return (
+      <div className="flex flex-col gap-4 h-full">
+        <div className="h-[42%] w-full shrink-0">
+          <ComponentPhoto item={item} isActive={isActive} fromX={0} fromY={-40} />
+        </div>
+        <div className="flex-1 min-h-0">
+          <ComponentInfo item={item} isActive={isActive} fromX={0} />
+        </div>
+      </div>
+    )
+  }
+
+  // photo-bottom
+  return (
+    <div className="flex flex-col gap-4 h-full">
+      <div className="flex-1 min-h-0">
+        <ComponentInfo item={item} isActive={isActive} fromX={0} />
+      </div>
+      <div className="h-[42%] w-full shrink-0">
+        <ComponentPhoto item={item} isActive={isActive} fromX={0} fromY={40} />
+      </div>
+    </div>
+  )
+}
 
 // ─── итоговая сборка ───────────────────────────────────────────────────────
 
@@ -271,7 +327,7 @@ export const sections = [
     id: `slide-${i + 1}`,
     title: comp.role,
     slideIndex: i + 1,
-    customContent: (isActive: boolean) => <ComponentSlide item={comp} isActive={isActive} />,
+    customContent: (isActive: boolean) => <ComponentSlide item={comp} isActive={isActive} index={i} />,
   })),
   {
     id: 'final',
