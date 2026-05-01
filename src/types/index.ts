@@ -4,9 +4,10 @@ export interface Section {
   id: string
   title: string
   subtitle?: ReactNode
-  content?: string
+  content?: string | ReactNode
   showButton?: boolean
   buttonText?: string
+  customContent?: ReactNode
 }
 
 export interface SectionProps extends Section {

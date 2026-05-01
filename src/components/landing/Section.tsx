@@ -1,20 +1,50 @@
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 import type { SectionProps } from "@/types"
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText }: SectionProps) {
-  return (
-    <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
-      {subtitle && (
+export default function Section({ id, title, isActive, customContent }: SectionProps) {
+  const hasCustomContent = !!customContent
+  const isHero = id === 'hero'
+
+  if (hasCustomContent && isHero) {
+    return (
+      <section id={id} className="relative h-screen w-full snap-start flex items-center">
         <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          className="w-full h-full"
+          initial={{ opacity: 0 }}
+          animate={isActive ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          {customContent}
+        </motion.div>
+      </section>
+    )
+  }
+
+  if (hasCustomContent) {
+    return (
+      <section id={id} className="relative h-screen w-full snap-start flex flex-col overflow-hidden">
+        <motion.h2
+          className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white px-8 md:px-12 pt-10 pb-4 shrink-0"
+          initial={{ opacity: 0, y: 30 }}
           animate={isActive ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          {subtitle}
+          {title}
+        </motion.h2>
+        <motion.div
+          className="flex-1 overflow-y-auto px-8 md:px-12 pb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isActive ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {customContent}
         </motion.div>
-      )}
+      </section>
+    )
+  }
+
+  return (
+    <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center px-8 md:px-16 lg:px-24">
       <motion.h2
         className="text-4xl md:text-6xl lg:text-[5rem] xl:text-[6rem] font-bold leading-[1.1] tracking-tight max-w-4xl text-white"
         initial={{ opacity: 0, y: 50 }}
@@ -23,32 +53,6 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
       >
         {title}
       </motion.h2>
-      {content && (
-        <motion.p
-          className="text-lg md:text-xl lg:text-2xl max-w-2xl mt-6 text-neutral-400"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isActive ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {content}
-        </motion.p>
-      )}
-      {showButton && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isActive ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 md:mt-16"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="text-[#FF4D00] bg-transparent border-[#FF4D00] hover:bg-[#FF4D00] hover:text-black transition-colors"
-          >
-            {buttonText}
-          </Button>
-        </motion.div>
-      )}
     </section>
   )
 }
