@@ -15,14 +15,14 @@ export default function LandingPage() {
       if (containerRef.current) {
         const scrollPosition = containerRef.current.scrollTop
         const windowHeight = window.innerHeight
-        const newActiveSection = Math.floor(scrollPosition / windowHeight)
-        setActiveSection(newActiveSection)
+        const newActiveSection = Math.round(scrollPosition / windowHeight)
+        setActiveSection(Math.min(newActiveSection, sections.length - 1))
       }
     }
 
     const container = containerRef.current
     if (container) {
-      container.addEventListener('scroll', handleScroll)
+      container.addEventListener('scroll', handleScroll, { passive: true })
     }
 
     return () => {
@@ -42,22 +42,40 @@ export default function LandingPage() {
   }
 
   return (
-    <Layout>
-      <nav className="fixed top-0 right-0 h-screen flex flex-col justify-center z-30 p-4">
+    <Layout activeSection={activeSection} totalSections={sections.length}>
+      {/* боковая навигация — точки */}
+      <nav className="fixed top-0 right-0 h-screen flex flex-col justify-center z-30 p-4 gap-1">
         {sections.map((section, index) => (
           <button
             key={section.id}
-            className={`w-3 h-3 rounded-full my-2 transition-all ${
-              index === activeSection ? 'bg-white scale-150' : 'bg-gray-600'
+            title={section.title || 'Главная'}
+            className={`rounded-full transition-all duration-300 ${
+              index === activeSection
+                ? 'bg-orange-500 w-2 h-5 scale-110'
+                : 'bg-white/20 hover:bg-white/40 w-2 h-2'
             }`}
             onClick={() => handleNavClick(index)}
           />
         ))}
       </nav>
+
+      {/* прогресс-бар сверху */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-0.5 bg-orange-500 origin-left z-30"
         style={{ scaleX }}
       />
+
+      {/* номер слайда снизу слева */}
+      <div className="fixed bottom-6 left-8 z-30 flex items-center gap-3">
+        <span className="text-orange-400 font-mono font-bold text-sm tabular-nums">
+          {String(activeSection + 1).padStart(2, '0')}
+        </span>
+        <div className="w-12 h-px bg-white/20" />
+        <span className="text-white/30 font-mono text-sm tabular-nums">
+          {String(sections.length).padStart(2, '0')}
+        </span>
+      </div>
+
       <div
         ref={containerRef}
         className="h-full overflow-y-auto snap-y snap-mandatory"
